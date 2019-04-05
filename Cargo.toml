@@ -1,0 +1,25 @@
+[package]
+name = "approveapi-actix-web"
+version = "0.1.0"
+authors = ["Alex Grinman <me@alexgr.in>"]
+edition = "2018"
+
+[dependencies]
+actix = "0.7.9"
+actix-web = "0.7.18"
+lazy_static = "1.2.0"
+handlebars = "1.1.0"
+log = "0.4.6"
+futures = "0.1.25"
+cookie = "0.11.0"
+base64 = "0.10.0"
+approveapi = "1.0.3"
+base-62 = "0.1.1"
+actix-redis = "0.5.1"
+rand = "0.6.5"
+failure = "0.1.5"
+env_logger = "0.6.1"
+
+[dependencies.serde]
+features = ["derive"]
+version = "1.0"

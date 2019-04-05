@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            text-align: center;
+            font-size: 16px;
+            background: #ebebeb8f;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: auto;
+            margin-top: 200px;
+            box-shadow: inset 0px 1px 3px 0px rgba(0, 1, 1, 0.06);
+            border: 1px solid #2c2c543d;
+            border-radius: 20px;
+            padding: 40px;
+            background: #fff;
+        }
+
+        label {
+            font-size: 24px;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+        input {
+            outline: none;
+            border: 1px solid #3a73ee;
+            border-radius: 6px;
+            background-color: #f9fafb;
+            font-size: 16px;
+            padding: 16px;
+            font-weight: normal;        
+            box-shadow: inset 0px 1px 3px 0px rgba(0, 1, 1, 0.06);
+            margin: auto;
+            margin-bottom: 20px;    
+            font-weight: bold;       
+            color: #3a73ee;
+            
+        }
+
+        input::placeholder {
+            font-weight: lighter;
+        }
+
+        button {
+            outline: none;
+            cursor: pointer;
+            margin: auto;            
+            padding: 0 20px 0 20px;
+            height: 50px;                        
+            border-radius: 25px;
+            border: none;
+            background-color: #3a73ee;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            user-select: none;
+            box-shadow: 0px 0px 8px #3636361c;
+        }
+
+        button:hover {
+            opacity: 0.7;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <form action="/login" method="POST">
+        <label for="user">Login</label>
+        <input type="text" placeholder="Enter a @email or phone#" name="user" required>
+        <button type="submit" value="Submit">Login</button>
+    </form>
+</body>
+</html>
