@@ -23,9 +23,11 @@ fn home(request: HttpRequest) -> impl Responder {
 
     // if we have a logged in user
     if let Some(user) = authenticated_user {
+        let home = include_str!("../static/home.html");
+        let home = home.replace("USER_ID", &user);
         return HttpResponse::build(StatusCode::OK)
             .content_type("text/html; charset=utf-8")
-            .body(format!("Welcome, {}! You're successfully logged in.", user));
+            .body(home);
     }
 
     // else not logged in, redirect to /login page!
@@ -94,7 +96,7 @@ fn login_submit((form, request): (Form<LoginForm>, HttpRequest)) -> impl Respond
     prompt_request.title = Some("Magic sign-in link".to_string());
     prompt_request.approve_text = Some("Sign-in".to_string());
     prompt_request.approve_redirect_url = Some(format!("{}/verify_login?c={}",
-                                                       env::var("WEB_URL").unwrap_or("http://localhost".to_string()),
+                                                       env::var("WEB_URL").unwrap_or("http://localhost:5000".to_string()),
                                                        challenge));
     //todo: add time, ip address, etc.
 
@@ -103,7 +105,10 @@ fn login_submit((form, request): (Form<LoginForm>, HttpRequest)) -> impl Respond
         eprintln!("approveapi error: {:?}", e);
         ServerError(format!("approveapi error: {:?}", e))
     }).and_then(|_| {
-        Ok("Check your email or phone for a magic link to sign in!".to_string())
+        Ok(HttpResponse::build(StatusCode::OK)
+            .content_type("text/html; charset=utf-8")
+            .body(include_str!("../static/challenge.html")))
+
     }).responder()
 }
 
