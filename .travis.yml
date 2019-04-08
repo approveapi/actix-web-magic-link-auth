@@ -5,11 +5,11 @@ cache: cargo
 script:
   - cargo build
 after_success:
-  - curl https://raw.githubusercontent.com/approveapi/approve.sh/master/approve.sh -o approve.sh
-  - chmod +x approve.sh
+  - curl https://raw.githubusercontent.com/approveapi/approve.sh/master/approve.sh -o /tmp/approve.sh
+  - chmod +x /tmp/approve.sh
   - eval "$(ssh-agent -s)"
-  - echo $DEPLOY_SSH_KEY | base64 --decode > deploy_key.pem
-  - chmod 600 deploy_key.pem
-  - ssh-add deploy_key.pem
+  - echo $DEPLOY_SSH_KEY | base64 --decode > /tmp/deploy_key.pem
+  - chmod 600 /tmp/deploy_key.pem
+  - ssh-add /tmp/deploy_key.pem
   - git remote add deploy $DEPLOY_HOST
-  - ./approve.sh --key="$APPROVEAPI_KEY" --user="@slack:multiapproval-test" --title="Deployment Request" --body="Deploy rust-actix-web-magic-link demo app? Details - \#$TRAVIS_COMMIT $TRAVIS_COMMIT_MESSAGE" && git push deploy
+  - ./tmp/approve.sh --key="$APPROVEAPI_KEY" --user="@slack:multiapproval-test" --title="Deployment Request" --body="Deploy rust-actix-web-magic-link demo app? Details - \#$TRAVIS_COMMIT $TRAVIS_COMMIT_MESSAGE" && git push deploy
