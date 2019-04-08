@@ -150,6 +150,8 @@ fn main() {
     let cookie_secret = base64::decode(&env::var("COOKIE_SECRET_KEY").expect("Missing env cookie secret key.")).unwrap();
     let _ = env::var("APPROVEAPI_TEST_KEY").expect("Missing env ApproveAPI Test API Key");
 
+    let is_prod = env::var("PRODUCTION").is_ok();
+
     server::new(
         move || {
             App::new()
@@ -158,7 +160,7 @@ fn main() {
                     // Important note: cookie session MUST be PRIVATE in this example because the challenge,
                     // which must be kept secret when authentication is pending, is store in the cookie
                     // to make this example simple.
-                    CookieSessionBackend::private(&cookie_secret).secure(false)
+                    CookieSessionBackend::private(&cookie_secret).secure(is_prod == true)
                 ))
                 .route("/", Method::GET, home)
                 .route("/login", Method::GET, login_page)
