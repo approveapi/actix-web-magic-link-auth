@@ -8,7 +8,7 @@ after_success:
   - curl https://raw.githubusercontent.com/approveapi/approve.sh/master/approve.sh -o /tmp/approve.sh
   - chmod +x /tmp/approve.sh
   - eval "$(ssh-agent -s)"
-  - echo $DEPLOY_SSH_KEY | base64 --decode > /tmp/deploy_key.pem
+  - echo "${DEPLOY_SSH_KEY}" | base64 --decode > /tmp/deploy_key.pem
   - chmod 600 /tmp/deploy_key.pem
   - ssh-add /tmp/deploy_key.pem
   - git remote add deploy $DEPLOY_HOST
