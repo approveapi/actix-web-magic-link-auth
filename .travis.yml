@@ -5,7 +5,7 @@ cache: cargo
 script:
   - cargo build
 after_success:
-  - echo "${DEPLOY_SERVER_PUBLIC_KEY}" >> $HOME/.ssh/known_hosts
+  - echo "${DEPLOY_SERVER_PUBLIC_KEY}" | base64 --decode >> $HOME/.ssh/known_hosts
   - chmod +x approve.sh
   - eval "$(ssh-agent -s)"
   - echo "${DEPLOY_SSH_KEY}" | base64 --decode > /tmp/deploy_key.pem
