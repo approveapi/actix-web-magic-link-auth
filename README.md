@@ -9,7 +9,7 @@ Based on [https://blog.approveapi.com/tutorials/rust-actix-web-approveapi-magic-
 
 ## [Follow the tutorial](https://blog.approveapi.com/tutorials/rust-actix-web-approveapi-magic-login-link/)
  
-##  [Try the live demo](https://examples.approveapi.com/rust-actix-web)
+##  [Try the live demo](https://rust.magiclink.example.approveapi.com/?_ga=2.5530875.998161848.1554669143-1710834317.1549157764)
 
 
 
